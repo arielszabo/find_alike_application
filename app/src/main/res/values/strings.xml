@@ -9,4 +9,7 @@
     <string name="view_at_imdb">View at IMDb</string>
     <string name="rating">Rating:</string>
     <string name="plot">Plot:</string>
+    <string name="about_and_privacy"><![CDATA[About & Privacy]]></string>
+    <string name="about">About:</string>
+    <string name="privacy">Privacy:</string>
 </resources>

@@ -1,0 +1,12 @@
+package com.szabgab.findalike
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class AboutAndPrivacy : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_about_and_privacy)
+    }
+}

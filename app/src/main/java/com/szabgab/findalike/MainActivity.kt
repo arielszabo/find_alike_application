@@ -4,9 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import android.view.MenuItem
+
+
 
 const val CHOSEN_TITLE = "chosenTitle"
 
@@ -30,10 +35,9 @@ class MainActivity : AppCompatActivity() {
 
 
         // Hide seen movies Logic:
-        alreadySeenTitlesCheckbox.isClickable = false  // todo: CHANGE THIS if logged in
         alreadySeenTitlesCheckbox.setOnClickListener { view: View ->
-            if (view.isClickable) {
-                null
+            if (view.isClickable)  {
+                Log.d("TODO" , "change a value and pass it to the API request")
                 // todo: change a value and pass it to the API request
             }
             else {
@@ -79,6 +83,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.overflow_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            R.id.about_and_privacy -> {
+                val intent = Intent(this, AboutAndPrivacy::class.java)
+                this.startActivity(intent)
+            }
+
+        }
+        return true
+    }
 
     private fun searchForTitle(title: String) {
         val intent = Intent(this, SearchResults::class.java).apply {
