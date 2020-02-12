@@ -19,10 +19,12 @@
 
             <ImageView
                 android:id="@+id/posterImageView"
-                android:layout_width="20dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:scaleType="centerCrop" />
+                android:contentDescription="@string/title_poster_image"
+                android:scaleType="center"
+                tools:src="@drawable/example_icon" />
 
             <TextView
                 android:id="@+id/movie_title"
@@ -52,13 +54,58 @@
             app:layout_constraintTop_toBottomOf="@+id/poster_title_and_checkbox">
 
             <TextView
-                android:id="@+id/plot_text"
+                android:id="@+id/rating_value_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_padding_or_margin"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="6.3"/>
+
+            <TextView
+                android:id="@+id/rating_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_padding_or_margin"
+                android:text="@string/rating"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/rating_value_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plot_header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_padding_or_margin"
+                android:text="@string/plot"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plot_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_padding_or_margin"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/small_padding_or_margin"
+                android:layout_marginBottom="@dimen/small_padding_or_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/plot_header_text"
+                tools:text="This is s sample test for development" />
+<!--            <Button-->
+<!--                android:id="@+id/imdb_link_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/view_at_imdb"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/plot_text" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
