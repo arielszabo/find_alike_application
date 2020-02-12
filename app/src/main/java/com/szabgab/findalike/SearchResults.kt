@@ -1,8 +1,10 @@
 package com.szabgab.findalike
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class SearchResults : AppCompatActivity() {
 
@@ -10,13 +12,28 @@ class SearchResults : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_results)
 
-        // Get the Intent that started this activity and extract the string
-        val message = intent.getStringExtra(CHOSEN_TITLE)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
+        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,
+            false)
 
-        // Capture the layout's TextView and set the string as its text
-        val textView = findViewById<TextView>(R.id.textView).apply {
-            text = message
+        val suggestedTitles = ArrayList<TitleData>()
+
+
+        val chosenTitle = intent.getStringExtra(CHOSEN_TITLE)?.toString()
+
+
+        for (i in 0..150) {
+            val year = 2_000 + i
+            val suggestedTitleData = TitleData("{$chosenTitle} was chosen",
+                BitmapFactory.decodeResource(resources, R.drawable.example_icon),
+                year,
+                "Some long long plot to describe the movie",
+                "http://imdb.com/ttsomething")
+            suggestedTitles.add(suggestedTitleData)
+
         }
 
+        val adapter = RecyclerViewAdapter(suggestedTitles)
+        recyclerView.adapter = adapter
     }
 }
