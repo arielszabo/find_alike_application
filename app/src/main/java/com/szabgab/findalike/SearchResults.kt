@@ -24,7 +24,7 @@ class SearchResults : AppCompatActivity() {
 
         for (i in 0..150) {
             val year = 2_000 + i
-            val suggestedTitleData = TitleData("{$chosenTitle} was chosen",
+            val suggestedTitleData = TitleData("$chosenTitle was chosen",
                 BitmapFactory.decodeResource(resources, R.drawable.example_icon),
                 year,
                 "Some long long plot to describe the movie",

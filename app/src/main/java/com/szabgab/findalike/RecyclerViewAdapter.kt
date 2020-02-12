@@ -29,7 +29,7 @@ class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleDa
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        fun bindItems(data : TitleData, adapter: RecyclerViewAdapter){
+        fun bindItems(titleData : TitleData, adapter: RecyclerViewAdapter){
             val expandableLayout: ConstraintLayout = itemView.findViewById(R.id.expandableLayout)
 
             val movieTitleTextView: TextView = itemView.findViewById(R.id.movie_title)
@@ -38,19 +38,27 @@ class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleDa
             val plotTextView: TextView = itemView.findViewById(R.id.plot_text)
             val posterTitleAndCheckbox: LinearLayout = itemView.findViewById(R.id.poster_title_and_checkbox)
 
-            movieTitleTextView.text = data.title
-            posterImageView.setImageBitmap(data.posterImage)
-            markAsSeenCheckBox.isClickable = data.isClickable
-            markAsSeenCheckBox.setChecked(data.isChecked)
-            plotTextView.text = data.plot
+            movieTitleTextView.text = titleData.title
+            posterImageView.setImageBitmap(titleData.posterImage)
+            markAsSeenCheckBox.isClickable = titleData.isClickable
+            markAsSeenCheckBox.setChecked(titleData.isChecked)
+            plotTextView.text = titleData.plot
 
 
             posterTitleAndCheckbox.setOnClickListener {
-                data.isExpanded = !data.isExpanded
+                titleData.isExpanded = !titleData.isExpanded
                 adapter.notifyItemChanged(adapterPosition)
             }
 
-            if (data.isExpanded) {
+            markAsSeenCheckBox.setOnClickListener {
+                val checkBoxStatus = markAsSeenCheckBox.isChecked
+                titleData.isChecked = checkBoxStatus // todo send to DB
+//                markAsSeenCheckBox.isChecked = checkBoxStatus
+                adapter.notifyItemChanged(adapterPosition)
+
+            }
+
+            if (titleData.isExpanded) {
                 expandableLayout.visibility = View.VISIBLE
             } else {
                 expandableLayout.visibility = View.GONE
