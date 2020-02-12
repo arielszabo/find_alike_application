@@ -1,11 +1,14 @@
 package com.szabgab.findalike
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+
+const val CHOSEN_TITLE = "chosenTitle"
 
 class MainActivity : AppCompatActivity() {
     // todo: load this from a json file, maybe do a dict style ?
@@ -53,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 parent, _, position, _ ->
 
             val selectedItem = parent.getItemAtPosition(position).toString()
-            // TODO move to the next page like a search
+            searchForTitle(selectedItem) // TODO move to the next page like a search
 
         }
 
@@ -63,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
             if ((countries.contains(selectedItem)) and (actionId == EditorInfo.IME_ACTION_SEARCH)) {
                 Log.d("TAG", selectedItem)
-                // TODO move to the next page like a search
+                searchForTitle(selectedItem) // TODO move to the next page like a search
                 true
             } else {
                 Toast.makeText(this,
@@ -74,5 +77,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+
+    private fun searchForTitle(title: String) {
+        val intent = Intent(this, SearchResults::class.java).apply {
+            putExtra(CHOSEN_TITLE, title)
+        }
+        startActivity(intent)
     }
 }
