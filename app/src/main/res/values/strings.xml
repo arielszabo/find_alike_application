@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Find Alike</string>
+    <string name="main_title">Find Similar Movies And TV-Shows:</string>
+    <string name="search_bar_hint">Enter title here ....</string>
+    <string name="already_seen_titles_checkbox_text">Hide already seen titles</string>
+    <string name="cant_find_title_button_text">Can\'t find a title ? Are you missing a title?\nLet us know !</string>
 </resources>
