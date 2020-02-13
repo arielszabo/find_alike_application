@@ -10,8 +10,10 @@
     <string name="rating">Rating:</string>
     <string name="plot">Plot:</string>
     <string name="about_and_privacy"><![CDATA[About & Privacy]]></string>
-    <string name="about">About:</string>
-    <string name="privacy">Privacy:</string>
+    <string name="about_header">About:</string>
+    <string name="about_text">This Application ..... TODO</string>
+    <string name="privacy_policy_header">Privacy Policy:</string>
+    <string name="privacy_policy_text">all saved private user data is only used for marking which movie each user have already seen.\nAll your data will be safely saved and won\'t be shared.</string>
     <string name="cant_find_text">Missing Title ?\n\nCan\'t find a title ?\nLet us know and we will update it as soon as possible.\n\nPlease add a link to the title\'s IMDb page:</string>
     <string name="link_to_the_title_s_imdb_page">Link to the title\'s IMDb Page</string>
     <string name="send">Send</string>
