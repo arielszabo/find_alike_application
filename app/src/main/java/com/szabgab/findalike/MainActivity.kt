@@ -50,7 +50,10 @@ class MainActivity : AppCompatActivity() {
         // Missing Title Logic:
         cantFindTitleButton.setOnClickListener {
             // TODO move to the add missing titles page
-        }
+            val intent = Intent(this, ReportMissingTitles::class.java)
+            startActivity(intent)
+
+            }
 
 
         // Search Logic:
