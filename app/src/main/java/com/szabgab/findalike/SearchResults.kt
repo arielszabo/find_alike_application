@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SearchResults : AppCompatActivity() {
 
+    // TODO onSaveInstanceState to fix device rotation data lose
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_results)
