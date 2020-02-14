@@ -64,7 +64,9 @@ class MainActivity : AppCompatActivity() {
                 parent, _, position, _ ->
 
             val selectedItem = parent.getItemAtPosition(position).toString()
-            searchForTitle(selectedItem, binding.hideAlreadySeenTitlesCheckbox.isChecked)
+            val selectedIMDBbID = countries.indexOf(selectedItem).toString()
+            val searchedTitle = SearchedTitle(selectedItem, selectedIMDBbID)
+            searchForTitle(searchedTitle)
 
         }
 
@@ -73,8 +75,10 @@ class MainActivity : AppCompatActivity() {
             val selectedItem: String = v.text.toString()
 
             if ((countries.contains(selectedItem)) and (actionId == EditorInfo.IME_ACTION_SEARCH)) {
-                Log.d("TAG", selectedItem)
-                searchForTitle(selectedItem, binding.hideAlreadySeenTitlesCheckbox.isChecked)
+
+                val selectedIMDBbID = countries.indexOf(selectedItem).toString()
+                val searchedTitle = SearchedTitle(selectedItem, selectedIMDBbID)
+                searchForTitle(searchedTitle)
                 true
             } else {
                 Toast.makeText(this,
@@ -104,9 +108,9 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun searchForTitle(title: String, hideAlreadySeenTitlesCheckboxStatus: Boolean) {
+    private fun searchForTitle(searchedTitle: SearchedTitle) {
         val intent = Intent(this, SearchResults::class.java).apply {
-            putExtra(CHOSEN_TITLE, title)
+            putExtra(CHOSEN_TITLE, searchedTitle.title) // TODO change this ?
         }
         startActivity(intent)
     }
