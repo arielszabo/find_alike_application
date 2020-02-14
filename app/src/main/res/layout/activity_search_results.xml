@@ -14,13 +14,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="These Are Similar To [Title]:"
-            app:layout_constraintBottom_toTopOf="@+id/checkbox"
+            app:layout_constraintBottom_toTopOf="@+id/hide_already_seen_titles_checkbox_on_result"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <CheckBox
-            android:id="@+id/checkbox"
+            android:id="@+id/hide_already_seen_titles_checkbox_on_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hide_already_seen_titles_checkbox_text"
@@ -36,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/hide_already_seen_titles_checkbox_on_result"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

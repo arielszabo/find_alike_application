@@ -32,8 +32,8 @@ class SearchResults : AppCompatActivity() {
             val year = 2_000 + i
             val suggestedTitleData = TitleData("$chosenTitle was chosen",
                 "director name",
-                year,
                 "Some long long plot to describe the movie",
+                year,
                 BitmapFactory.decodeResource(resources, R.drawable.example_icon),
                 "imdbid",
                 "http://imdb.com/ttsomething")

@@ -1,6 +1,5 @@
 package com.szabgab.findalike
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleData>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -46,7 +44,7 @@ class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleDa
             ratingValueText.text = "9.9" // todo get from titleData
 
             posterTitleAndCheckbox.setOnClickListener {
-                titleData.isExpanded = !titleData.isExpanded
+                titleData.isLayoutExpanded = !titleData.isLayoutExpanded
                 adapter.notifyItemChanged(adapterPosition)
             }
 
@@ -58,7 +56,7 @@ class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleDa
 
             }
 
-            if (titleData.isExpanded) {
+            if (titleData.isLayoutExpanded) {
                 expandableLayout.visibility = View.VISIBLE
             } else {
                 expandableLayout.visibility = View.GONE
