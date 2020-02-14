@@ -14,6 +14,7 @@ class SearchResults : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchResultsBinding
 
+    private var searchedTitle = SearchedTitle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +26,14 @@ class SearchResults : AppCompatActivity() {
         val suggestedTitles = ArrayList<TitleData>()
 
 
-        val chosenTitle = intent.getStringExtra(CHOSEN_TITLE)?.toString()
+        searchedTitle.title = intent.getStringExtra(CHOSEN_TITLE)?.toString()
+        searchedTitle.imdbID = intent.getStringExtra(CHOSEN_IMDB_ID)?.toString()
+        binding.searchedTitle = searchedTitle
 
 
         for (i in 0..150) {
             val year = 2_000 + i
-            val suggestedTitleData = TitleData("$chosenTitle was chosen",
+            val suggestedTitleData = TitleData("a title was chosen",
                 "director name",
                 "Some long long plot to describe the movie",
                 year,

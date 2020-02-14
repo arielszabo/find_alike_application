@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="SearchedTitle"
+            type="com.szabgab.findalike.SearchedTitle" />
+    </data>
+    
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_constraint_layout"
         android:layout_width="match_parent"
@@ -13,7 +19,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="These Are Similar To [Title]:"
+            android:text="@{@string/these_are_similar_to_title(SearchedTitle.title)}"
+            tools:text="These Are Similar To [Title]"
             app:layout_constraintBottom_toTopOf="@+id/hide_already_seen_titles_checkbox_on_result"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

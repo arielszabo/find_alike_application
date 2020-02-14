@@ -15,6 +15,7 @@ import com.szabgab.findalike.databinding.ActivityMainBinding
 
 
 const val CHOSEN_TITLE = "chosenTitle"
+const val CHOSEN_IMDB_ID = "chosenIMDbId"
 
 class MainActivity : AppCompatActivity() {
     // todo: load this from a json file, maybe do a dict style ?
@@ -63,22 +64,20 @@ class MainActivity : AppCompatActivity() {
         binding.searchTitleAutocomplete.onItemClickListener = AdapterView.OnItemClickListener {
                 parent, _, position, _ ->
 
-            val selectedItem = parent.getItemAtPosition(position).toString()
-            val selectedIMDBbID = countries.indexOf(selectedItem).toString()
-            val searchedTitle = SearchedTitle(selectedItem, selectedIMDBbID)
-            searchForTitle(searchedTitle)
+            val selectedTitle = parent.getItemAtPosition(position).toString()
+            val selectedIMDbID = countries.indexOf(selectedTitle).toString() // todo change
+            searchForTitle(selectedTitle, selectedIMDbID)
 
         }
 
 
         binding.searchTitleAutocomplete.setOnEditorActionListener { v, actionId, _ ->
-            val selectedItem: String = v.text.toString()
+            val selectedTitle: String = v.text.toString()
 
-            if ((countries.contains(selectedItem)) and (actionId == EditorInfo.IME_ACTION_SEARCH)) {
+            if ((countries.contains(selectedTitle)) and (actionId == EditorInfo.IME_ACTION_SEARCH)) {
 
-                val selectedIMDBbID = countries.indexOf(selectedItem).toString()
-                val searchedTitle = SearchedTitle(selectedItem, selectedIMDBbID)
-                searchForTitle(searchedTitle)
+                val selectedIMDbID = countries.indexOf(selectedTitle).toString() // todo change
+                searchForTitle(selectedTitle, selectedIMDbID)
                 true
             } else {
                 Toast.makeText(this,
@@ -108,9 +107,10 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun searchForTitle(searchedTitle: SearchedTitle) {
+    private fun searchForTitle(searchedTitle: String, selectedIMDbID: String) {
         val intent = Intent(this, SearchResults::class.java).apply {
-            putExtra(CHOSEN_TITLE, searchedTitle.title) // TODO change this ?
+            putExtra(CHOSEN_TITLE, searchedTitle) // TODO change this ?
+            putExtra(CHOSEN_IMDB_ID, selectedIMDbID) // TODO change this ?
         }
         startActivity(intent)
     }

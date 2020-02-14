@@ -10,6 +10,3 @@ data class TitleData(var title: String,
                      var imdbLink: String,
                      var isSeen: Boolean = false,
                      var isLayoutExpanded: Boolean = false)
-
-
-data class SearchedTitle(var title: String, var imdbID: String)

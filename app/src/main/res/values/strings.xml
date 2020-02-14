@@ -4,6 +4,7 @@
     <string name="search_bar_hint">Enter title here ....</string>
     <string name="hide_already_seen_titles_checkbox_text">Hide already seen titles</string>
     <string name="cant_find_title_button_text">Can\'t find a title ? Are you missing a title?\nLet us know !</string>
+    <string name="these_are_similar_to_title">These Are Similar To "%s":</string>
     <string name="mark_as_seen">Mark as seen</string>
     <string name="title_poster_image">Title poster image</string>
     <string name="view_at_imdb">View at IMDb</string>
