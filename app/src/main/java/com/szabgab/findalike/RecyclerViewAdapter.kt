@@ -22,13 +22,10 @@ class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleDa
     override fun getItemCount() = suggestedTitlesDataList.size
 
     class ViewHolder private constructor (val binding: TitleItemBinding): RecyclerView.ViewHolder(binding.root) {
-        
+
         fun bindItems(titleData : TitleData, adapter: RecyclerViewAdapter){
-            binding.movieTitle.text = titleData.title
-            binding.posterImageView.setImageBitmap(titleData.posterImage)
-            binding.markAsSeenCheckBox.isChecked = titleData.isSeen
-            binding.plotText.text = titleData.plot
-            binding.ratingValueText.text = "9.9" // todo get from titleData
+            binding.titleData = titleData
+            binding.executePendingBindings()
 
             binding.posterTitleAndCheckboxLayout.setOnClickListener {
                 titleData.isLayoutExpanded = !titleData.isLayoutExpanded

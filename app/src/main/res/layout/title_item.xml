@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="TitleData"
+            name="titleData"
             type="com.szabgab.findalike.TitleData" />
     </data>
     <androidx.cardview.widget.CardView
@@ -29,7 +29,8 @@
                     android:layout_weight="2"
                     android:contentDescription="@string/title_poster_image"
                     android:scaleType="center"
-                    tools:src="@drawable/example_icon" />
+                    tools:src="@drawable/example_icon"
+                    app:posterImageView="@{titleData}"/>
 
                 <TextView
                     android:id="@+id/movie_title"
@@ -38,7 +39,8 @@
                     android:layout_weight="8"
                     android:textAlignment="center"
                     android:textSize="16sp"
-                    tools:text="Movie Title (year)" />
+                    tools:text="Movie Title (year)"
+                    app:movieTitle="@{titleData}"/>
 
                 <CheckBox
                     android:id="@+id/markAsSeenCheckBox"
@@ -46,7 +48,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_weight="0"
-                    android:text="@string/mark_as_seen" />
+                    android:text="@string/mark_as_seen"
+                    app:markAsSeenCheckBox="@{titleData}"/>
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,7 +69,8 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="6.3"/>
+                    tools:text="6.3"
+                    app:ratingValueText="@{titleData}"/>
 
                 <TextView
                     android:id="@+id/rating_title_text"
@@ -101,7 +105,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/plot_header_text"
-                    tools:text="This is s sample test for development" />
+                    tools:text="This is s sample test for development"
+                    app:plotText="@{titleData}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
