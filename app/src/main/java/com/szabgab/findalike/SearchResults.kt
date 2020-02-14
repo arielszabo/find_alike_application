@@ -17,7 +17,7 @@ class SearchResults : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_search_results)
 
         binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,
             false)
