@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <variable
+            name="TitleData"
+            type="com.szabgab.findalike.TitleData" />
+    </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +17,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/poster_title_and_checkbox"
+                android:id="@+id/poster_title_and_checkbox_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -52,7 +56,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/poster_title_and_checkbox">
+                app:layout_constraintTop_toBottomOf="@+id/poster_title_and_checkbox_layout">
 
                 <TextView
                     android:id="@+id/rating_value_text"
