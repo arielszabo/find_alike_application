@@ -1,12 +1,14 @@
 package com.szabgab.findalike
 
-import android.graphics.BitmapFactory
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.szabgab.findalike.databinding.ActivitySearchResultsBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class SearchResults : AppCompatActivity() {
 
@@ -23,28 +25,27 @@ class SearchResults : AppCompatActivity() {
         binding.recyclerview.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,
             false)
 
-        val suggestedTitles = ArrayList<TitleData>()
-
-
         searchedTitle.title = intent.getStringExtra(CHOSEN_TITLE)?.toString()
         searchedTitle.imdbID = intent.getStringExtra(CHOSEN_IMDB_ID)?.toString()
         binding.searchedTitle = searchedTitle
 
-
-        for (i in 0..150) {
-            val year = 2_000 + i
-            val suggestedTitleData = TitleData("a title was chosen",
-                "director name",
-                "Some long long plot to describe the movie",
-                year,
-                BitmapFactory.decodeResource(resources, R.drawable.example_icon),
-                "imdbid",
-                "http://imdb.com/ttsomething")
-            suggestedTitles.add(suggestedTitleData)
-
-        }
+        val suggestedTitles = getDataToDisplay(applicationContext)
 
         val adapter = RecyclerViewAdapter(suggestedTitles)
         binding.recyclerview.adapter = adapter
     }
+
+    // TODO move this from here:
+    private fun getDataToDisplay(context: Context): ArrayList<TitleData> {
+        val jsonFilePath = "counties_sample_data.json" // todo refactor here
+        val jsonFileString: String = context.assets.open(jsonFilePath).bufferedReader().readText()
+
+        val gson = Gson()
+        val listTitleType = object : TypeToken<List<TitleData>>() {}.type
+
+        val suggestedTitles: ArrayList<TitleData> = gson.fromJson(jsonFileString, listTitleType)
+
+        return suggestedTitles
+    }
+
 }
