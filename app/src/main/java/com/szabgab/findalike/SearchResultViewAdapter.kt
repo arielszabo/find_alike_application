@@ -3,7 +3,6 @@ package com.szabgab.findalike
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListView
 import androidx.recyclerview.widget.RecyclerView
 import com.szabgab.findalike.databinding.TitleItemBinding
 
@@ -25,7 +24,7 @@ class SearchResultViewAdapter(private val suggestedTitlesDataList: ArrayList<Tit
 
     class TitleItemViewHolder private constructor (val binding: TitleItemBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItems(titleData : TitleData, adapter: SearchResultViewAdapter){
+        fun bindItems(titleData: TitleData, adapter: SearchResultViewAdapter){
             binding.titleData = titleData
             binding.executePendingBindings()
 
@@ -57,9 +56,4 @@ class SearchResultViewAdapter(private val suggestedTitlesDataList: ArrayList<Tit
             }
         }
     }
-}
-
-
-class SearchResultViewListener(val clickListener: (imdbID: String) -> Unit) {
-    fun onClick(titleData: TitleData) = clickListener(titleData.imdbID)
 }
