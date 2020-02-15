@@ -3,40 +3,42 @@ package com.szabgab.findalike
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListView
 import androidx.recyclerview.widget.RecyclerView
 import com.szabgab.findalike.databinding.TitleItemBinding
 
-class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleData>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class SearchResultViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleData>): RecyclerView.Adapter<SearchResultViewAdapter.TitleItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = TitleItemViewHolder.from(parent)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TitleItemViewHolder, position: Int) {
         holder.bindItems(suggestedTitlesDataList[position], this)
     }
 
-//    override fun getItemId(position: Int): Long {
+    override fun getItemId(position: Int): Long {
 //        return super.getItemId(position)
-//        return suggestedTitlesDataList[position].imdbID // TODO maybe hash this to a long?
-//    }
+        val imdbID = suggestedTitlesDataList[position].imdbID
+        return imdbID.substring(2).toLong()
+    }
 
     override fun getItemCount() = suggestedTitlesDataList.size
 
-    class ViewHolder private constructor (val binding: TitleItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class TitleItemViewHolder private constructor (val binding: TitleItemBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItems(titleData : TitleData, adapter: RecyclerViewAdapter){
+        fun bindItems(titleData : TitleData, adapter: SearchResultViewAdapter){
             binding.titleData = titleData
             binding.executePendingBindings()
 
             binding.posterTitleAndCheckboxLayout.setOnClickListener {
                 titleData.isLayoutExpanded = !titleData.isLayoutExpanded
-                adapter.notifyItemChanged(adapterPosition)
+                adapter.notifyItemChanged(adapterPosition) // TODO use DiffUtil
             }
 
             binding.markAsSeenCheckBox.setOnClickListener {
                 val checkBoxStatus = binding.markAsSeenCheckBox.isChecked
                 titleData.isSeen = checkBoxStatus // todo send to DB
                 // markAsSeenCheckBox.isChecked = checkBoxStatus
-                adapter.notifyItemChanged(adapterPosition)
+                adapter.notifyItemChanged(adapterPosition) // TODO use DiffUtil
 
             }
 
@@ -48,11 +50,16 @@ class RecyclerViewAdapter(private val suggestedTitlesDataList: ArrayList<TitleDa
         }
 
         companion object {
-            fun from(parent: ViewGroup): ViewHolder {
+            fun from(parent: ViewGroup): TitleItemViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = TitleItemBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
+                return TitleItemViewHolder(binding)
             }
         }
     }
+}
+
+
+class SearchResultViewListener(val clickListener: (imdbID: String) -> Unit) {
+    fun onClick(titleData: TitleData) = clickListener(titleData.imdbID)
 }

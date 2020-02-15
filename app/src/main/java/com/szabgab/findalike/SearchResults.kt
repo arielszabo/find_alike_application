@@ -31,7 +31,7 @@ class SearchResults : AppCompatActivity() {
 
         val suggestedTitles = getDataToDisplay(applicationContext)
 
-        val adapter = RecyclerViewAdapter(suggestedTitles)
+        val adapter = SearchResultViewAdapter(suggestedTitles)
         binding.recyclerview.adapter = adapter
     }
 
